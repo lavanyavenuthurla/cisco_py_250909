@@ -1,5 +1,5 @@
 
-import repo_sql_dict as repo
+import repo
 
 def menu():
     message = '''
@@ -22,8 +22,8 @@ Your Option:'''
         employee = {'id':id, 'name':name, 'age':age, 
                     'salary':salary, 'is_active':is_active}
 
-        repo.create_employee(employee)
-
+        createdEmp = repo.create_employee(employee)
+        print(f'Created:{createdEmp}')
         print('Employee Created Successfully.')
     elif choice == 2:
         print('List of Employees:')
@@ -49,7 +49,8 @@ Your Option:'''
                 'age':employee['age'], 
                 'salary':salary, 
                 'is_active':employee['is_active']}
-            repo.update(id, new_employee)
+            updatedEmp = repo.update(id, new_employee)
+            print(f'Updated:{updatedEmp}')
             print('Employee updated successfully.')
     elif choice == 5:
         id = int(input('ID:'))
@@ -57,8 +58,9 @@ Your Option:'''
         if employee == None: 
             print('Employee Not Found')
         else:
-            repo.delete_employee(id)
-            print('Employee Deleted Succesfully.')
+            messageDict = repo.delete_employee(id)
+            #print('Employee Deleted Succesfully.')
+            print(messageDict['message'])
     elif choice == 6: 
         print('Thank you for using Application')
 
